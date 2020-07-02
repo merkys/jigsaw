@@ -1,12 +1,20 @@
 #!/usr/bin/perl
+# Generate random substrings.
+#
+# Usage:
+# gen-reads STRING [N]
+#
+#   where
+#       STRING - a text string
+#       N - optional number of substrings; default 10
 
 use strict;
 use warnings;
 
-my $seq = shift @ARGV;
+my( $seq, $N ) = ( @ARGV, 10 );
 
 $\ = "\n";
-while( 1 ) {
+while( !defined $N || $N-- ) {
     my $length = int( rand() *   length( $seq ) + 1 );
     my $start  = int( rand() * ( length( $seq ) - $length + 1 ) );
     print substr $seq, $start, $length;

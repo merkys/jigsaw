@@ -1,4 +1,9 @@
 #!/usr/bin/perl
+#
+# Visualize De Bruijn graphs.
+#
+# Usage:
+# seq-to-DeBruijn < file-with-reads.lst > graph.dot
 
 use strict;
 use warnings;
