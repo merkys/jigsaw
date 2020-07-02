@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+binmode( STDIN,  ':encoding(UTF-8)' );
+binmode( STDOUT, ':encoding(UTF-8)' );
+binmode( STDERR, ':encoding(UTF-8)' );
+
+my $k = shift @ARGV;
+
+print 'digraph DeBruijn {' . "\n";
+
+while( <> ) {
+    s/\n//;
+    for my $i (0..length($_)-$k-1) {
+        print '    ' .
+              substr( $_, $i,   $k ) .
+              ' -> ' .
+              substr( $_, $i+1, $k ) .
+              ' [label="' . substr( $_, $i+$k, 1 ) . '"];' . "\n";
+    }
+}
+
+print "}\n";
